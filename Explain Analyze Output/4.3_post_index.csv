@@ -1,0 +1,131 @@
+"QUERY PLAN"
+"[
+  {
+    ""Plan"": {
+      ""Node Type"": ""Sort"",
+      ""Parallel Aware"": false,
+      ""Async Capable"": false,
+      ""Startup Cost"": 233066.89,
+      ""Total Cost"": 233067.02,
+      ""Plan Rows"": 50,
+      ""Plan Width"": 40,
+      ""Actual Startup Time"": 4815.553,
+      ""Actual Total Time"": 4815.555,
+      ""Actual Rows"": 5,
+      ""Actual Loops"": 1,
+      ""Output"": [""d.decade"", ""(count(*))""],
+      ""Sort Key"": [""d.decade DESC""],
+      ""Sort Method"": ""quicksort"",
+      ""Sort Space Used"": 25,
+      ""Sort Space Type"": ""Memory"",
+      ""Plans"": [
+        {
+          ""Node Type"": ""Aggregate"",
+          ""Strategy"": ""Hashed"",
+          ""Partial Mode"": ""Simple"",
+          ""Parent Relationship"": ""Outer"",
+          ""Parallel Aware"": false,
+          ""Async Capable"": false,
+          ""Startup Cost"": 233064.98,
+          ""Total Cost"": 233065.48,
+          ""Plan Rows"": 50,
+          ""Plan Width"": 40,
+          ""Actual Startup Time"": 4815.541,
+          ""Actual Total Time"": 4815.544,
+          ""Actual Rows"": 5,
+          ""Actual Loops"": 1,
+          ""Output"": [""d.decade"", ""count(*)""],
+          ""Group Key"": [""d.decade""],
+          ""Planned Partitions"": 0,
+          ""HashAgg Batches"": 1,
+          ""Peak Memory Usage"": 24,
+          ""Disk Usage"": 0,
+          ""Plans"": [
+            {
+              ""Node Type"": ""Hash Join"",
+              ""Parent Relationship"": ""Outer"",
+              ""Parallel Aware"": false,
+              ""Async Capable"": false,
+              ""Join Type"": ""Inner"",
+              ""Startup Cost"": 2.12,
+              ""Total Cost"": 224458.78,
+              ""Plan Rows"": 1721241,
+              ""Plan Width"": 32,
+              ""Actual Startup Time"": 0.445,
+              ""Actual Total Time"": 3381.208,
+              ""Actual Rows"": 5051750,
+              ""Actual Loops"": 1,
+              ""Output"": [""d.decade""],
+              ""Inner Unique"": false,
+              ""Hash Cond"": ""(pu.year = d.year)"",
+              ""Plans"": [
+                {
+                  ""Node Type"": ""Seq Scan"",
+                  ""Parent Relationship"": ""Outer"",
+                  ""Parallel Aware"": false,
+                  ""Async Capable"": false,
+                  ""Relation Name"": ""publications"",
+                  ""Schema"": ""public"",
+                  ""Alias"": ""pu"",
+                  ""Startup Cost"": 0.00,
+                  ""Total Cost"": 181425.63,
+                  ""Plan Rows"": 6884963,
+                  ""Plan Width"": 32,
+                  ""Actual Startup Time"": 0.388,
+                  ""Actual Total Time"": 1354.097,
+                  ""Actual Rows"": 6884963,
+                  ""Actual Loops"": 1,
+                  ""Output"": [""pu.\""pubID\"""", ""pu.title"", ""pu.year"", ""pu.pages""]
+                },
+                {
+                  ""Node Type"": ""Hash"",
+                  ""Parent Relationship"": ""Inner"",
+                  ""Parallel Aware"": false,
+                  ""Async Capable"": false,
+                  ""Startup Cost"": 1.50,
+                  ""Total Cost"": 1.50,
+                  ""Plan Rows"": 50,
+                  ""Plan Width"": 64,
+                  ""Actual Startup Time"": 0.043,
+                  ""Actual Total Time"": 0.044,
+                  ""Actual Rows"": 50,
+                  ""Actual Loops"": 1,
+                  ""Output"": [""d.decade"", ""d.year""],
+                  ""Hash Buckets"": 1024,
+                  ""Original Hash Buckets"": 1024,
+                  ""Hash Batches"": 1,
+                  ""Original Hash Batches"": 1,
+                  ""Peak Memory Usage"": 11,
+                  ""Plans"": [
+                    {
+                      ""Node Type"": ""Seq Scan"",
+                      ""Parent Relationship"": ""Outer"",
+                      ""Parallel Aware"": false,
+                      ""Async Capable"": false,
+                      ""Relation Name"": ""decades"",
+                      ""Schema"": ""pg_temp"",
+                      ""Alias"": ""d"",
+                      ""Startup Cost"": 0.00,
+                      ""Total Cost"": 1.50,
+                      ""Plan Rows"": 50,
+                      ""Plan Width"": 64,
+                      ""Actual Startup Time"": 0.030,
+                      ""Actual Total Time"": 0.034,
+                      ""Actual Rows"": 50,
+                      ""Actual Loops"": 1,
+                      ""Output"": [""d.decade"", ""d.year""]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    ""Planning Time"": 102.899,
+    ""Triggers"": [
+    ],
+    ""Execution Time"": 4815.635
+  }
+]"

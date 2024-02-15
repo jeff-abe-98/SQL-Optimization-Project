@@ -1,13 +1,11 @@
 CREATE TABLE public.articles
 (
-"articleID" integer NOT NULL DEFAULT
-nextval('"articles_articleID_seq"'::regclass),
-pages text,
-volume text,
+"articleID" UUID NOT NULL DEFAULT gen_random_uuid (),
+title text,
+author text,
+year text,
 journal text,
-"number" text,
-"pubID" integer,
-CONSTRAINT articles_pkey PRIMARY KEY ("articleID"),
-CONSTRAINT "pubID" FOREIGN KEY ("pubID")
-REFERENCES public.publications ("pubID") MATCH SIMPLE
+
+pages text,
+CONSTRAINT articles_pkey PRIMARY KEY ("articleID")
 )

@@ -1,12 +1,8 @@
 CREATE TABLE public.publications
 (
-"pubID" integer NOT NULL DEFAULT
-nextval('"publications_pibID_seq"'::regclass),
-"pubKey" text,
+"pubID" UUID NOT NULL DEFAULT gen_random_uuid (),
 title text,
 year text,
-month text,
-ee text,
-url text,
+pages text,
 CONSTRAINT publications_pkey PRIMARY KEY ("pubID")
 )

@@ -1,0 +1,286 @@
+"QUERY PLAN"
+"[
+  {
+    ""Plan"": {
+      ""Node Type"": ""Sort"",
+      ""Parallel Aware"": false,
+      ""Async Capable"": false,
+      ""Startup Cost"": 187629.91,
+      ""Total Cost"": 187630.08,
+      ""Plan Rows"": 67,
+      ""Plan Width"": 16,
+      ""Actual Startup Time"": 921.246,
+      ""Actual Total Time"": 946.231,
+      ""Actual Rows"": 4,
+      ""Actual Loops"": 1,
+      ""Output"": [""proceedings.booktitle"", ""(count(proceedings.title))""],
+      ""Sort Key"": [""(count(proceedings.title)) DESC""],
+      ""Sort Method"": ""quicksort"",
+      ""Sort Space Used"": 25,
+      ""Sort Space Type"": ""Memory"",
+      ""Plans"": [
+        {
+          ""Node Type"": ""Aggregate"",
+          ""Strategy"": ""Sorted"",
+          ""Partial Mode"": ""Finalize"",
+          ""Parent Relationship"": ""Outer"",
+          ""Parallel Aware"": false,
+          ""Async Capable"": false,
+          ""Startup Cost"": 187576.71,
+          ""Total Cost"": 187627.88,
+          ""Plan Rows"": 67,
+          ""Plan Width"": 16,
+          ""Actual Startup Time"": 918.064,
+          ""Actual Total Time"": 946.224,
+          ""Actual Rows"": 4,
+          ""Actual Loops"": 1,
+          ""Output"": [""proceedings.booktitle"", ""count(proceedings.title)""],
+          ""Group Key"": [""proceedings.booktitle""],
+          ""Filter"": ""(count(proceedings.title) > 1200)"",
+          ""Rows Removed by Filter"": 3010,
+          ""Plans"": [
+            {
+              ""Node Type"": ""Gather Merge"",
+              ""Parent Relationship"": ""Outer"",
+              ""Parallel Aware"": false,
+              ""Async Capable"": false,
+              ""Startup Cost"": 187576.71,
+              ""Total Cost"": 187623.38,
+              ""Plan Rows"": 400,
+              ""Plan Width"": 16,
+              ""Actual Startup Time"": 916.201,
+              ""Actual Total Time"": 944.844,
+              ""Actual Rows"": 5479,
+              ""Actual Loops"": 1,
+              ""Output"": [""proceedings.booktitle"", ""(PARTIAL count(proceedings.title))""],
+              ""Workers Planned"": 2,
+              ""Workers Launched"": 2,
+              ""Plans"": [
+                {
+                  ""Node Type"": ""Sort"",
+                  ""Parent Relationship"": ""Outer"",
+                  ""Parallel Aware"": false,
+                  ""Async Capable"": false,
+                  ""Startup Cost"": 186576.68,
+                  ""Total Cost"": 186577.18,
+                  ""Plan Rows"": 200,
+                  ""Plan Width"": 16,
+                  ""Actual Startup Time"": 858.667,
+                  ""Actual Total Time"": 858.819,
+                  ""Actual Rows"": 1826,
+                  ""Actual Loops"": 3,
+                  ""Output"": [""proceedings.booktitle"", ""(PARTIAL count(proceedings.title))""],
+                  ""Sort Key"": [""proceedings.booktitle""],
+                  ""Sort Method"": ""quicksort"",
+                  ""Sort Space Used"": 110,
+                  ""Sort Space Type"": ""Memory"",
+                  ""Workers"": [
+                    {
+                      ""Worker Number"": 0,
+                      ""Actual Startup Time"": 845.210,
+                      ""Actual Total Time"": 845.483,
+                      ""Actual Rows"": 2848,
+                      ""Actual Loops"": 1,
+                      ""Sort Method"": ""quicksort"",
+                      ""Sort Space Used"": 222,
+                      ""Sort Space Type"": ""Memory""
+                    },
+                    {
+                      ""Worker Number"": 1,
+                      ""Actual Startup Time"": 823.875,
+                      ""Actual Total Time"": 823.951,
+                      ""Actual Rows"": 1234,
+                      ""Actual Loops"": 1,
+                      ""Sort Method"": ""quicksort"",
+                      ""Sort Space Used"": 103,
+                      ""Sort Space Type"": ""Memory""
+                    }
+                  ],
+                  ""Plans"": [
+                    {
+                      ""Node Type"": ""Aggregate"",
+                      ""Strategy"": ""Hashed"",
+                      ""Partial Mode"": ""Partial"",
+                      ""Parent Relationship"": ""Outer"",
+                      ""Parallel Aware"": false,
+                      ""Async Capable"": false,
+                      ""Startup Cost"": 186567.04,
+                      ""Total Cost"": 186569.04,
+                      ""Plan Rows"": 200,
+                      ""Plan Width"": 16,
+                      ""Actual Startup Time"": 848.673,
+                      ""Actual Total Time"": 849.042,
+                      ""Actual Rows"": 1826,
+                      ""Actual Loops"": 3,
+                      ""Output"": [""proceedings.booktitle"", ""PARTIAL count(proceedings.title)""],
+                      ""Group Key"": [""proceedings.booktitle""],
+                      ""Planned Partitions"": 0,
+                      ""HashAgg Batches"": 1,
+                      ""Peak Memory Usage"": 209,
+                      ""Disk Usage"": 0,
+                      ""Workers"": [
+                        {
+                          ""Worker Number"": 0,
+                          ""Actual Startup Time"": 828.624,
+                          ""Actual Total Time"": 829.211,
+                          ""Actual Rows"": 2848,
+                          ""Actual Loops"": 1,
+                          ""HashAgg Batches"": 1,
+                          ""Peak Memory Usage"": 385,
+                          ""Disk Usage"": 0
+                        },
+                        {
+                          ""Worker Number"": 1,
+                          ""Actual Startup Time"": 818.349,
+                          ""Actual Total Time"": 818.498,
+                          ""Actual Rows"": 1234,
+                          ""Actual Loops"": 1,
+                          ""HashAgg Batches"": 1,
+                          ""Peak Memory Usage"": 209,
+                          ""Disk Usage"": 0
+                        }
+                      ],
+                      ""Plans"": [
+                        {
+                          ""Node Type"": ""Append"",
+                          ""Parent Relationship"": ""Outer"",
+                          ""Parallel Aware"": true,
+                          ""Async Capable"": false,
+                          ""Startup Cost"": 0.00,
+                          ""Total Cost"": 186222.00,
+                          ""Plan Rows"": 69008,
+                          ""Plan Width"": 83,
+                          ""Actual Startup Time"": 0.822,
+                          ""Actual Total Time"": 820.998,
+                          ""Actual Rows"": 56854,
+                          ""Actual Loops"": 3,
+                          ""Workers"": [
+                            {
+                              ""Worker Number"": 0,
+                              ""Actual Startup Time"": 1.638,
+                              ""Actual Total Time"": 801.835,
+                              ""Actual Rows"": 56048,
+                              ""Actual Loops"": 1
+                            },
+                            {
+                              ""Worker Number"": 1,
+                              ""Actual Startup Time"": 0.804,
+                              ""Actual Total Time"": 792.786,
+                              ""Actual Rows"": 51652,
+                              ""Actual Loops"": 1
+                            }
+                          ],
+                          ""Subplans Removed"": 0,
+                          ""Plans"": [
+                            {
+                              ""Node Type"": ""Bitmap Heap Scan"",
+                              ""Parent Relationship"": ""Member"",
+                              ""Parallel Aware"": false,
+                              ""Async Capable"": false,
+                              ""Relation Name"": ""proceedings"",
+                              ""Schema"": ""public"",
+                              ""Alias"": ""proceedings"",
+                              ""Startup Cost"": 6.51,
+                              ""Total Cost"": 786.61,
+                              ""Plan Rows"": 287,
+                              ""Plan Width"": 150,
+                              ""Actual Startup Time"": 1.635,
+                              ""Actual Total Time"": 8.148,
+                              ""Actual Rows"": 2817,
+                              ""Actual Loops"": 1,
+                              ""Output"": [""proceedings.booktitle"", ""proceedings.title""],
+                              ""Recheck Cond"": ""(proceedings.year = '2017'::numeric)"",
+                              ""Rows Removed by Index Recheck"": 0,
+                              ""Exact Heap Blocks"": 0,
+                              ""Lossy Heap Blocks"": 0,
+                              ""Workers"": [
+                                {
+                                  ""Worker Number"": 0,
+                                  ""Actual Startup Time"": 1.635,
+                                  ""Actual Total Time"": 8.148,
+                                  ""Actual Rows"": 2817,
+                                  ""Actual Loops"": 1
+                                }
+                              ],
+                              ""Plans"": [
+                                {
+                                  ""Node Type"": ""Bitmap Index Scan"",
+                                  ""Parent Relationship"": ""Outer"",
+                                  ""Parallel Aware"": false,
+                                  ""Async Capable"": false,
+                                  ""Index Name"": ""proceedings_year_index"",
+                                  ""Startup Cost"": 0.00,
+                                  ""Total Cost"": 6.44,
+                                  ""Plan Rows"": 287,
+                                  ""Plan Width"": 0,
+                                  ""Actual Startup Time"": 1.402,
+                                  ""Actual Total Time"": 1.402,
+                                  ""Actual Rows"": 2817,
+                                  ""Actual Loops"": 1,
+                                  ""Index Cond"": ""(proceedings.year = '2017'::numeric)"",
+                                  ""Workers"": [
+                                    {
+                                      ""Worker Number"": 0,
+                                      ""Actual Startup Time"": 1.402,
+                                      ""Actual Total Time"": 1.402,
+                                      ""Actual Rows"": 2817,
+                                      ""Actual Loops"": 1
+                                    }
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              ""Node Type"": ""Seq Scan"",
+                              ""Parent Relationship"": ""Member"",
+                              ""Parallel Aware"": true,
+                              ""Async Capable"": false,
+                              ""Relation Name"": ""inproceedings"",
+                              ""Schema"": ""public"",
+                              ""Alias"": ""inproceedings"",
+                              ""Startup Cost"": 0.00,
+                              ""Total Cost"": 185090.35,
+                              ""Plan Rows"": 68888,
+                              ""Plan Width"": 83,
+                              ""Actual Startup Time"": 1.121,
+                              ""Actual Total Time"": 813.822,
+                              ""Actual Rows"": 55915,
+                              ""Actual Loops"": 3,
+                              ""Output"": [""inproceedings.booktitle"", ""inproceedings.title""],
+                              ""Filter"": ""(inproceedings.year = '2017'::numeric)"",
+                              ""Rows Removed by Filter"": 1078827,
+                              ""Workers"": [
+                                {
+                                  ""Worker Number"": 0,
+                                  ""Actual Startup Time"": 2.539,
+                                  ""Actual Total Time"": 789.310,
+                                  ""Actual Rows"": 53231,
+                                  ""Actual Loops"": 1
+                                },
+                                {
+                                  ""Worker Number"": 1,
+                                  ""Actual Startup Time"": 0.801,
+                                  ""Actual Total Time"": 788.664,
+                                  ""Actual Rows"": 51652,
+                                  ""Actual Loops"": 1
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    ""Planning Time"": 9.277,
+    ""Triggers"": [
+    ],
+    ""Execution Time"": 946.365
+  }
+]"

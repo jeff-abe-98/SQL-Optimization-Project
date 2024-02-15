@@ -1,11 +1,15 @@
 CREATE TABLE public.books
 (
-"bookID" integer NOT NULL DEFAULT
-nextval('"books_bookID_seq"'::regclass),
+"bookID" UUID NOT NULL DEFAULT gen_random_uuid (),
+title text  COLLATE pg_catalog."default",
+
+author text COLLATE pg_catalog."default",
+
 publisher text COLLATE pg_catalog."default",
 isbn text,
-"pubID" integer,
-CONSTRAINT books_pkey PRIMARY KEY ("bookID"),
-CONSTRAINT "pubID" FOREIGN KEY ("pubID")
-REFERENCES public.publications ("pubID") MATCH SIMPLE
+
+year text,
+
+pages text,
+CONSTRAINT books_pkey PRIMARY KEY ("bookID")
 )

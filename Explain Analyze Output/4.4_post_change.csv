@@ -1,0 +1,457 @@
+"QUERY PLAN"
+"[
+  {
+    ""Plan"": {
+      ""Node Type"": ""Limit"",
+      ""Parallel Aware"": false,
+      ""Async Capable"": false,
+      ""Startup Cost"": 15332937266.31,
+      ""Total Cost"": 15332937266.34,
+      ""Plan Rows"": 10,
+      ""Plan Width"": 40,
+      ""Actual Startup Time"": 4944.366,
+      ""Actual Total Time"": 4949.937,
+      ""Actual Rows"": 10,
+      ""Actual Loops"": 1,
+      ""Output"": [""(unnest(string_to_array(articles.author, '::'::text)))"", ""(((count(*)) + (count(*))))""],
+      ""Plans"": [
+        {
+          ""Node Type"": ""Sort"",
+          ""Parent Relationship"": ""Outer"",
+          ""Parallel Aware"": false,
+          ""Async Capable"": false,
+          ""Startup Cost"": 15332937266.31,
+          ""Total Cost"": 16312766767.32,
+          ""Plan Rows"": 391931800402,
+          ""Plan Width"": 40,
+          ""Actual Startup Time"": 4944.364,
+          ""Actual Total Time"": 4949.935,
+          ""Actual Rows"": 10,
+          ""Actual Loops"": 1,
+          ""Output"": [""(unnest(string_to_array(articles.author, '::'::text)))"", ""(((count(*)) + (count(*))))""],
+          ""Sort Key"": [""(((count(*)) + (count(*)))) DESC""],
+          ""Sort Method"": ""top-N heapsort"",
+          ""Sort Space Used"": 25,
+          ""Sort Space Type"": ""Memory"",
+          ""Plans"": [
+            {
+              ""Node Type"": ""Merge Join"",
+              ""Parent Relationship"": ""Outer"",
+              ""Parallel Aware"": false,
+              ""Async Capable"": false,
+              ""Join Type"": ""Inner"",
+              ""Startup Cost"": 1759660.29,
+              ""Total Cost"": 6863431969.13,
+              ""Plan Rows"": 391931800402,
+              ""Plan Width"": 40,
+              ""Actual Startup Time"": 4610.416,
+              ""Actual Total Time"": 4947.936,
+              ""Actual Rows"": 8389,
+              ""Actual Loops"": 1,
+              ""Output"": [""(unnest(string_to_array(articles.author, '::'::text)))"", ""((count(*)) + (count(*)))""],
+              ""Inner Unique"": false,
+              ""Merge Cond"": ""((unnest(string_to_array(articles.author, '::'::text))) = (unnest(string_to_array(inproceedings.author, '::'::text))))"",
+              ""Plans"": [
+                {
+                  ""Node Type"": ""Aggregate"",
+                  ""Strategy"": ""Sorted"",
+                  ""Partial Mode"": ""Finalize"",
+                  ""Parent Relationship"": ""Outer"",
+                  ""Parallel Aware"": false,
+                  ""Async Capable"": false,
+                  ""Startup Cost"": 880665.55,
+                  ""Total Cost"": 2246529.03,
+                  ""Plan Rows"": 8380180,
+                  ""Plan Width"": 40,
+                  ""Actual Startup Time"": 3296.948,
+                  ""Actual Total Time"": 3470.676,
+                  ""Actual Rows"": 83560,
+                  ""Actual Loops"": 1,
+                  ""Output"": [""(unnest(string_to_array(articles.author, '::'::text)))"", ""count(*)""],
+                  ""Group Key"": [""(unnest(string_to_array(articles.author, '::'::text)))""],
+                  ""Plans"": [
+                    {
+                      ""Node Type"": ""Gather Merge"",
+                      ""Parent Relationship"": ""Outer"",
+                      ""Parallel Aware"": false,
+                      ""Async Capable"": false,
+                      ""Startup Cost"": 880665.55,
+                      ""Total Cost"": 2073734.53,
+                      ""Plan Rows"": 9418360,
+                      ""Plan Width"": 40,
+                      ""Actual Startup Time"": 3296.941,
+                      ""Actual Total Time"": 3426.790,
+                      ""Actual Rows"": 98503,
+                      ""Actual Loops"": 1,
+                      ""Output"": [""(unnest(string_to_array(articles.author, '::'::text)))"", ""(PARTIAL count(*))""],
+                      ""Workers Planned"": 2,
+                      ""Workers Launched"": 2,
+                      ""Plans"": [
+                        {
+                          ""Node Type"": ""Aggregate"",
+                          ""Strategy"": ""Sorted"",
+                          ""Partial Mode"": ""Partial"",
+                          ""Parent Relationship"": ""Outer"",
+                          ""Parallel Aware"": false,
+                          ""Async Capable"": false,
+                          ""Startup Cost"": 879665.52,
+                          ""Total Cost"": 985622.07,
+                          ""Plan Rows"": 4709180,
+                          ""Plan Width"": 40,
+                          ""Actual Startup Time"": 2879.710,
+                          ""Actual Total Time"": 2903.331,
+                          ""Actual Rows"": 32835,
+                          ""Actual Loops"": 3,
+                          ""Output"": [""(unnest(string_to_array(articles.author, '::'::text)))"", ""PARTIAL count(*)""],
+                          ""Group Key"": [""(unnest(string_to_array(articles.author, '::'::text)))""],
+                          ""Workers"": [
+                            {
+                              ""Worker Number"": 0,
+                              ""Actual Startup Time"": 3080.734,
+                              ""Actual Total Time"": 3099.858,
+                              ""Actual Rows"": 28883,
+                              ""Actual Loops"": 1
+                            },
+                            {
+                              ""Worker Number"": 1,
+                              ""Actual Startup Time"": 2427.718,
+                              ""Actual Total Time"": 2457.788,
+                              ""Actual Rows"": 42711,
+                              ""Actual Loops"": 1
+                            }
+                          ],
+                          ""Plans"": [
+                            {
+                              ""Node Type"": ""Sort"",
+                              ""Parent Relationship"": ""Outer"",
+                              ""Parallel Aware"": false,
+                              ""Async Capable"": false,
+                              ""Startup Cost"": 879665.52,
+                              ""Total Cost"": 891438.47,
+                              ""Plan Rows"": 4709180,
+                              ""Plan Width"": 32,
+                              ""Actual Startup Time"": 2879.700,
+                              ""Actual Total Time"": 2882.218,
+                              ""Actual Rows"": 46785,
+                              ""Actual Loops"": 3,
+                              ""Output"": [""(unnest(string_to_array(articles.author, '::'::text)))""],
+                              ""Sort Key"": [""(unnest(string_to_array(articles.author, '::'::text)))""],
+                              ""Sort Method"": ""quicksort"",
+                              ""Sort Space Used"": 2652,
+                              ""Sort Space Type"": ""Memory"",
+                              ""Workers"": [
+                                {
+                                  ""Worker Number"": 0,
+                                  ""Actual Startup Time"": 3080.724,
+                                  ""Actual Total Time"": 3082.675,
+                                  ""Actual Rows"": 39798,
+                                  ""Actual Loops"": 1,
+                                  ""Sort Method"": ""quicksort"",
+                                  ""Sort Space Used"": 2712,
+                                  ""Sort Space Type"": ""Memory""
+                                },
+                                {
+                                  ""Worker Number"": 1,
+                                  ""Actual Startup Time"": 2427.708,
+                                  ""Actual Total Time"": 2430.867,
+                                  ""Actual Rows"": 61545,
+                                  ""Actual Loops"": 1,
+                                  ""Sort Method"": ""quicksort"",
+                                  ""Sort Space Used"": 3343,
+                                  ""Sort Space Type"": ""Memory""
+                                }
+                              ],
+                              ""Plans"": [
+                                {
+                                  ""Node Type"": ""ProjectSet"",
+                                  ""Parent Relationship"": ""Outer"",
+                                  ""Parallel Aware"": false,
+                                  ""Async Capable"": false,
+                                  ""Startup Cost"": 0.00,
+                                  ""Total Cost"": 132378.51,
+                                  ""Plan Rows"": 4709180,
+                                  ""Plan Width"": 32,
+                                  ""Actual Startup Time"": 648.434,
+                                  ""Actual Total Time"": 2535.596,
+                                  ""Actual Rows"": 46785,
+                                  ""Actual Loops"": 3,
+                                  ""Output"": [""unnest(string_to_array(articles.author, '::'::text))""],
+                                  ""Workers"": [
+                                    {
+                                      ""Worker Number"": 0,
+                                      ""Actual Startup Time"": 805.239,
+                                      ""Actual Total Time"": 2772.317,
+                                      ""Actual Rows"": 39798,
+                                      ""Actual Loops"": 1
+                                    },
+                                    {
+                                      ""Worker Number"": 1,
+                                      ""Actual Startup Time"": 37.929,
+                                      ""Actual Total Time"": 1981.857,
+                                      ""Actual Rows"": 61545,
+                                      ""Actual Loops"": 1
+                                    }
+                                  ],
+                                  ""Plans"": [
+                                    {
+                                      ""Node Type"": ""Seq Scan"",
+                                      ""Parent Relationship"": ""Outer"",
+                                      ""Parallel Aware"": true,
+                                      ""Async Capable"": false,
+                                      ""Relation Name"": ""articles"",
+                                      ""Schema"": ""public"",
+                                      ""Alias"": ""articles"",
+                                      ""Startup Cost"": 0.00,
+                                      ""Total Cost"": 104123.43,
+                                      ""Plan Rows"": 470918,
+                                      ""Plan Width"": 52,
+                                      ""Actual Startup Time"": 648.411,
+                                      ""Actual Total Time"": 2516.127,
+                                      ""Actual Rows"": 13746,
+                                      ""Actual Loops"": 3,
+                                      ""Output"": [""articles.\""articleID\"""", ""articles.title"", ""articles.author"", ""articles.year"", ""articles.journal"", ""articles.pages""],
+                                      ""Filter"": ""regexp_like(articles.journal, '([Dd]ata)'::text)"",
+                                      ""Rows Removed by Filter"": 1116282,
+                                      ""Workers"": [
+                                        {
+                                          ""Worker Number"": 0,
+                                          ""Actual Startup Time"": 805.225,
+                                          ""Actual Total Time"": 2756.068,
+                                          ""Actual Rows"": 11790,
+                                          ""Actual Loops"": 1
+                                        },
+                                        {
+                                          ""Worker Number"": 1,
+                                          ""Actual Startup Time"": 37.911,
+                                          ""Actual Total Time"": 1955.985,
+                                          ""Actual Rows"": 18346,
+                                          ""Actual Loops"": 1
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  ""Node Type"": ""Materialize"",
+                  ""Parent Relationship"": ""Inner"",
+                  ""Parallel Aware"": false,
+                  ""Async Capable"": false,
+                  ""Startup Cost"": 878994.74,
+                  ""Total Cost"": 2381367.06,
+                  ""Plan Rows"": 9353780,
+                  ""Plan Width"": 40,
+                  ""Actual Startup Time"": 1313.371,
+                  ""Actual Total Time"": 1408.978,
+                  ""Actual Rows"": 40404,
+                  ""Actual Loops"": 1,
+                  ""Output"": [""(unnest(string_to_array(inproceedings.author, '::'::text)))"", ""(count(*))""],
+                  ""Plans"": [
+                    {
+                      ""Node Type"": ""Aggregate"",
+                      ""Strategy"": ""Sorted"",
+                      ""Partial Mode"": ""Finalize"",
+                      ""Parent Relationship"": ""Outer"",
+                      ""Parallel Aware"": false,
+                      ""Async Capable"": false,
+                      ""Startup Cost"": 878994.74,
+                      ""Total Cost"": 2264444.81,
+                      ""Plan Rows"": 9353780,
+                      ""Plan Width"": 40,
+                      ""Actual Startup Time"": 1313.357,
+                      ""Actual Total Time"": 1398.427,
+                      ""Actual Rows"": 40404,
+                      ""Actual Loops"": 1,
+                      ""Output"": [""(unnest(string_to_array(inproceedings.author, '::'::text)))"", ""count(*)""],
+                      ""Group Key"": [""(unnest(string_to_array(inproceedings.author, '::'::text)))""],
+                      ""Plans"": [
+                        {
+                          ""Node Type"": ""Gather Merge"",
+                          ""Parent Relationship"": ""Outer"",
+                          ""Parallel Aware"": false,
+                          ""Async Capable"": false,
+                          ""Startup Cost"": 878994.74,
+                          ""Total Cost"": 2076857.11,
+                          ""Plan Rows"": 9456200,
+                          ""Plan Width"": 40,
+                          ""Actual Startup Time"": 1313.350,
+                          ""Actual Total Time"": 1376.781,
+                          ""Actual Rows"": 47523,
+                          ""Actual Loops"": 1,
+                          ""Output"": [""(unnest(string_to_array(inproceedings.author, '::'::text)))"", ""(PARTIAL count(*))""],
+                          ""Workers Planned"": 2,
+                          ""Workers Launched"": 2,
+                          ""Plans"": [
+                            {
+                              ""Node Type"": ""Aggregate"",
+                              ""Strategy"": ""Sorted"",
+                              ""Partial Mode"": ""Partial"",
+                              ""Parent Relationship"": ""Outer"",
+                              ""Parallel Aware"": false,
+                              ""Async Capable"": false,
+                              ""Startup Cost"": 877994.72,
+                              ""Total Cost"": 984376.97,
+                              ""Plan Rows"": 4728100,
+                              ""Plan Width"": 40,
+                              ""Actual Startup Time"": 1245.545,
+                              ""Actual Total Time"": 1256.615,
+                              ""Actual Rows"": 15841,
+                              ""Actual Loops"": 3,
+                              ""Output"": [""(unnest(string_to_array(inproceedings.author, '::'::text)))"", ""PARTIAL count(*)""],
+                              ""Group Key"": [""(unnest(string_to_array(inproceedings.author, '::'::text)))""],
+                              ""Workers"": [
+                                {
+                                  ""Worker Number"": 0,
+                                  ""Actual Startup Time"": 1223.587,
+                                  ""Actual Total Time"": 1235.018,
+                                  ""Actual Rows"": 16583,
+                                  ""Actual Loops"": 1
+                                },
+                                {
+                                  ""Worker Number"": 1,
+                                  ""Actual Startup Time"": 1215.367,
+                                  ""Actual Total Time"": 1225.021,
+                                  ""Actual Rows"": 15508,
+                                  ""Actual Loops"": 1
+                                }
+                              ],
+                              ""Plans"": [
+                                {
+                                  ""Node Type"": ""Sort"",
+                                  ""Parent Relationship"": ""Outer"",
+                                  ""Parallel Aware"": false,
+                                  ""Async Capable"": false,
+                                  ""Startup Cost"": 877994.72,
+                                  ""Total Cost"": 889814.97,
+                                  ""Plan Rows"": 4728100,
+                                  ""Plan Width"": 32,
+                                  ""Actual Startup Time"": 1245.535,
+                                  ""Actual Total Time"": 1246.701,
+                                  ""Actual Rows"": 20669,
+                                  ""Actual Loops"": 3,
+                                  ""Output"": [""(unnest(string_to_array(inproceedings.author, '::'::text)))""],
+                                  ""Sort Key"": [""(unnest(string_to_array(inproceedings.author, '::'::text)))""],
+                                  ""Sort Method"": ""quicksort"",
+                                  ""Sort Space Used"": 1350,
+                                  ""Sort Space Type"": ""Memory"",
+                                  ""Workers"": [
+                                    {
+                                      ""Worker Number"": 0,
+                                      ""Actual Startup Time"": 1223.576,
+                                      ""Actual Total Time"": 1224.767,
+                                      ""Actual Rows"": 21321,
+                                      ""Actual Loops"": 1,
+                                      ""Sort Method"": ""quicksort"",
+                                      ""Sort Space Used"": 1375,
+                                      ""Sort Space Type"": ""Memory""
+                                    },
+                                    {
+                                      ""Worker Number"": 1,
+                                      ""Actual Startup Time"": 1215.357,
+                                      ""Actual Total Time"": 1216.304,
+                                      ""Actual Rows"": 20527,
+                                      ""Actual Loops"": 1,
+                                      ""Sort Method"": ""quicksort"",
+                                      ""Sort Space Used"": 1358,
+                                      ""Sort Space Type"": ""Memory""
+                                    }
+                                  ],
+                                  ""Plans"": [
+                                    {
+                                      ""Node Type"": ""ProjectSet"",
+                                      ""Parent Relationship"": ""Outer"",
+                                      ""Parallel Aware"": false,
+                                      ""Async Capable"": false,
+                                      ""Startup Cost"": 0.00,
+                                      ""Total Cost"": 127570.95,
+                                      ""Plan Rows"": 4728100,
+                                      ""Plan Width"": 32,
+                                      ""Actual Startup Time"": 18.737,
+                                      ""Actual Total Time"": 1104.718,
+                                      ""Actual Rows"": 20669,
+                                      ""Actual Loops"": 3,
+                                      ""Output"": [""unnest(string_to_array(inproceedings.author, '::'::text))""],
+                                      ""Workers"": [
+                                        {
+                                          ""Worker Number"": 0,
+                                          ""Actual Startup Time"": 6.776,
+                                          ""Actual Total Time"": 1074.786,
+                                          ""Actual Rows"": 21321,
+                                          ""Actual Loops"": 1
+                                        },
+                                        {
+                                          ""Worker Number"": 1,
+                                          ""Actual Startup Time"": 16.699,
+                                          ""Actual Total Time"": 1075.000,
+                                          ""Actual Rows"": 20527,
+                                          ""Actual Loops"": 1
+                                        }
+                                      ],
+                                      ""Plans"": [
+                                        {
+                                          ""Node Type"": ""Seq Scan"",
+                                          ""Parent Relationship"": ""Outer"",
+                                          ""Parallel Aware"": true,
+                                          ""Async Capable"": false,
+                                          ""Relation Name"": ""inproceedings"",
+                                          ""Schema"": ""public"",
+                                          ""Alias"": ""inproceedings"",
+                                          ""Startup Cost"": 0.00,
+                                          ""Total Cost"": 99202.35,
+                                          ""Plan Rows"": 472810,
+                                          ""Plan Width"": 53,
+                                          ""Actual Startup Time"": 18.725,
+                                          ""Actual Total Time"": 1084.308,
+                                          ""Actual Rows"": 5932,
+                                          ""Actual Loops"": 3,
+                                          ""Output"": [""inproceedings.\""inproceedingsID\"""", ""inproceedings.title"", ""inproceedings.author"", ""inproceedings.year"", ""inproceedings.pages"", ""inproceedings.booktitle""],
+                                          ""Filter"": ""regexp_like(inproceedings.booktitle, '([Dd]ata)'::text)"",
+                                          ""Rows Removed by Filter"": 1128811,
+                                          ""Workers"": [
+                                            {
+                                              ""Worker Number"": 0,
+                                              ""Actual Startup Time"": 6.763,
+                                              ""Actual Total Time"": 1063.943,
+                                              ""Actual Rows"": 6056,
+                                              ""Actual Loops"": 1
+                                            },
+                                            {
+                                              ""Worker Number"": 1,
+                                              ""Actual Startup Time"": 16.685,
+                                              ""Actual Total Time"": 1035.210,
+                                              ""Actual Rows"": 5933,
+                                              ""Actual Loops"": 1
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    ""Planning Time"": 4.399,
+    ""Triggers"": [
+    ],
+    ""Execution Time"": 4951.081
+  }
+]"
