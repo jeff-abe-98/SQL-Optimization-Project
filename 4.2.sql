@@ -1,3 +1,5 @@
+/* First attempt at the query using CTEs for each individual conference*/
+
 
 WITH sigmod AS 
 (
@@ -20,7 +22,7 @@ INNER JOIN pvldb pv
 ON pv.author = s.author AND pv.n_articles >=10 AND s.n_articles >=10
 ;
 
-
+/* Query re-written to use case statements in the having section. This allowed for the query to have no CTEs or subqueries, which sped up the process*/
 
 SELECT UNNEST(STRING_TO_ARRAY(author, '::')) as author
 FROM inproceedings

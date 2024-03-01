@@ -1,4 +1,5 @@
-[
+"QUERY PLAN"
+"[
   {
     ""Plan"": {
       ""Node Type"": ""Sort"",
@@ -127,4 +128,4 @@
     ],
     ""Execution Time"": 4278.348
   }
-]
+]"
